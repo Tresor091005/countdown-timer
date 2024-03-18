@@ -1,0 +1,172 @@
+.part2 {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.flip-clock {
+  display: flex;
+  text-align: center;
+  perspective: 400px;
+  margin: 20px auto;
+}
+.flip-clock *,
+.flip-clock *:before,
+.flip-clock *:after {
+    box-sizing: border-box;
+}
+.flip-clock__piece {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 0 5px;
+}
+.flip-clock__slot {
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: #8486a9;
+  font-size: 1.8vw;
+}
+.card {
+  display: block;
+  position: relative;  gap: 19px;
+  padding-bottom: 0.72em;
+  font-size: 10vw;
+  line-height: 0.95;
+}
+@media (min-width: 460px) {
+  .flip-clock__piece {
+    gap: 15px;
+  }
+}
+@media (min-width: 900px) {
+  .flip-clock__piece {
+    gap: 35px;
+  }
+  .flip-clock__slot {
+    letter-spacing: 5px;
+    font-size: 1.2vw;
+  }
+  .card {
+    font-size: 100px;
+  }
+}
+.card__top,
+.card__bottom,
+.card__back::before,
+.card__back::after {
+  display: block;
+  height: 0.72em;
+  color: #fb6087dc;
+  background: #343650f5;
+  padding: 0.25em 0.25em;
+  border-radius: 0.15em 0.15em 0 0;
+  transform-style: preserve-3d;
+  width: 1.8em;
+  transform: translateZ(0);
+
+}
+.card__bottom {
+  color: #fb6087;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  background: #343650;
+  border-radius: 0 0 0.15em 0.15em;
+  pointer-events: none;
+  overflow: hidden;
+}
+.card__bottom::after {
+  display: block;
+  margin-top: -0.72em;
+}
+.card__back::before,
+.card__bottom::after {
+  content: attr(data-value);
+}
+.card__back {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  left: 0%;
+  pointer-events: none;
+}
+.card__back::before {
+  position: relative;
+  z-index: -1;
+  overflow: hidden;
+}
+.flip .card__back::before {
+  -webkit-animation: flipTop 0.3s cubic-bezier(0.37, 0.01, 0.94, 0.35);
+          animation: flipTop 0.3s cubic-bezier(0.37, 0.01, 0.94, 0.35);
+  -webkit-animation-fill-mode: both;
+          animation-fill-mode: both;
+  transform-origin: center bottom;
+}
+.flip .card__back .card__bottom {
+  transform-origin: center top;
+  -webkit-animation-fill-mode: both;
+          animation-fill-mode: both;
+  -webkit-animation: flipBottom 0.6s cubic-bezier(0.15, 0.45, 0.28, 1);
+          animation: flipBottom 0.6s cubic-bezier(0.15, 0.45, 0.28, 1);
+}
+@-webkit-keyframes flipTop {
+  0% {
+    transform: rotateX(0deg);
+    z-index: 2;
+  }
+  0%,
+  99% {
+    opacity: 0.99;
+  }
+  100% {
+    transform: rotateX(-90deg);
+    opacity: 0;
+  }
+}
+@keyframes flipTop {
+  0% {
+    transform: rotateX(0deg);
+    z-index: 2;
+  }
+  0%,
+  99% {
+    opacity: 0.99;
+  }
+  100% {
+    transform: rotateX(-90deg);
+    opacity: 0;
+  }
+}
+@-webkit-keyframes flipBottom {
+  0%,
+  50% {
+    z-index: -1;
+    transform: rotateX(90deg);
+    opacity: 0;
+  }
+  51% {
+    opacity: 0.99;
+  }
+  100% {
+    opacity: 0.99;
+    transform: rotateX(0deg);
+    z-index: 5;
+  }
+}
+@keyframes flipBottom {
+  0%,
+  50% {
+    z-index: -1;
+    transform: rotateX(90deg);
+    opacity: 0;
+  }
+  51% {
+    opacity: 0.99;
+  }
+  100% {
+    opacity: 0.99;
+    transform: rotateX(0deg);
+    z-index: 5;
+  }
+}

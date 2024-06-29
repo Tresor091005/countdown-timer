@@ -7,4 +7,4 @@ for (const link of dom.links) {
     link.addEventListener('mouseleave', () => {ChangePathColor(link.firstChild, "#8385A9")})
 }
 
-runClock(dom.flip, "October 9, 2024", () => { alert('Heureux Jour de Fête') });
+runClock(dom.flip, "July 17, 2024", () => { alert('Heureux Jour de Fête') });
